@@ -1,0 +1,19 @@
+# Define the folder to zip and the destination zip file
+$folderPathOrg = "C:\apache-tomcat-9.0.82\logs\pensionApp.log"
+$folderPathFinal = "D:\CR-Update\logs"
+$zipFilePath = "D:\CR-Update\logs\Archived.zip"
+
+#Copy file source-org to source-final
+copy $folderPathOrg $folderPathFinal
+
+# Check if the zip file already exists
+if (Test-Path -Path $zipFilePath) {
+    # Remove the existing zip file
+    Remove-Item -Path $zipFilePath -Force
+    Write-Output "Existing zip file removed: $zipFilePath"
+}
+
+# Compress the folder into a zip file
+Compress-Archive -Path $folderPathFinal -DestinationPath $zipFilePath
+Write-Output "Folder source: $folderPathFinal"
+Write-Output "Folder zipped successfully to: $zipFilePath"
