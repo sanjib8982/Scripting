@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Path to GitLab backup directory
+BACKUP_DIR="/var/opt/gitlab/backups"
+# Path to the latest backup file (assuming the format is timestamp_gitlab_backup.tar)
+LATEST_BACKUP=$(ls -Art $BACKUP_DIR | grep gitlab_backup | tail -n 1)
+
+if [ -z "$LATEST_BACKUP" ]; then
+  echo "No backup files found in $BACKUP_DIR"
+  exit 1
+fi
+
+# Stop GitLab services before restoration
+echo "Stopping GitLab services..."
+gitlab-ctl stop
+
+# Perform the restoration
+echo "Restoring from backup $LATEST_BACKUP..."
+gitlab-backup restore BACKUP=$(basename "$LATEST_BACKUP" .tar) --force
+
+# Restart GitLab services after restoration
+echo "Starting GitLab services..."
+gitlab-ctl start
+
+echo "GitLab restoration completed successfully."
