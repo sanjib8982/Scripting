@@ -1,0 +1,6 @@
+[root@git ~]# cat /home/satya/autobkptosvr.sh
+#!/bin/bash
+#gpg -dq /home/satya/.password.gpg | sshpass rsync -Pavz /var/opt/gitlab/backups/* satya@192.168.XX.XX:/var/opt/gitlab/backups/
+sshpass -f /home/satya/.password rsync -Pavz /var/opt/gitlab/backups/* satya@192.168.XX.XX:/var/opt/gitlab/backups/
+[root@git ~]# cat /home/satya/.password
+Abcef##$
