@@ -1,0 +1,6 @@
+git config --global user.name "Sanjib Gahir"
+git config --global user.email sanjib.gahir@gmail.com
+====================================================
+git add DB_BAk_1.0  <- Push to staging
+git commit -m "DB Backup v1.0" <- Add message
+git push <- push to server
