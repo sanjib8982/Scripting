@@ -2,6 +2,7 @@
 
 # List of variables
 #A=$(/opt/secret/.sqlpwd)
+#Remember to use 600 permission for password file
 #B=$(/opt/DbBackup)
 #C=$($(date +%d-%m-%Y_%H%M%S).sql.gz))
 
