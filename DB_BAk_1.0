@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# List of variables
+#A=$(/opt/secret/.sqlpwd)
+#B=$(/opt/DbBackup)
+#C=$($(date +%d-%m-%Y_%H%M%S).sql.gz))
+
+#List of databases
+DB1=tradelicense_testdb
+DB2=taonew_db
+
+#mysqldump --defaults-extra-file=/opt/secret/.sqlpwd --routines $DB1 | gzip > /opt/DbBackup/tradelicense_testdb_$(date +%d-%m-%Y_%H%M%S).sql.gz
+mysqldump --defaults-extra-file=/opt/secret/.sqlpwd --routines $DB1 | gzip > /opt/DbBackup/tradelicense_testdb_$(date +%d-%m-%Y_%H%M%S).sql.gz
+mysqldump --defaults-extra-file=/opt/secret/.sqlpwd --routines $DB2 | gzip > /opt/DbBackup/taonew_db_$(date +%d-%m-%Y_%H%M%S).sql.gz
+
+# Log the end of the script
+echo "All tasks completed successfully."
